@@ -1,0 +1,130 @@
+<ion-modal-view class="modal-lg">
+    <ion-content style="min-height: 80%" class="has-modal-footer" delegate-handle="form-error">
+        <form ng-submit="newCartCustomerSearchEvent({ customerKeyword : customerKeyword })" class="fade" ng-show="newCartVisitor">
+            <div class="row">
+                <div class="col col-15">
+                    <label class="item item-input pad-left-0 pad-right-0">
+                        <span class="input-label"> {{'LOOK_UP' | translate}}</span>
+                    </label>
+                </div>
+                <div class="col col-85">
+                    <label class="item item-input pad-left-0 pad-right-0">
+                            <input type="search" ng-model="customerKeyword" placeholder="{{'SEARCH_CUSTOMER_HINTS' | translate }}" />
+                    </label>
+                </div>
+            </div>
+        </form>
+        <div class="big-scan fade" ng-show="newCartVisitor" ng-click="newCartScan()"><i class="ion-android-expand"></i></div>
+        <div class="text-right" ng-show="newCartVisitor">
+            <button class="button button-clear button-small text-blue" ng-click="showNewCartRegisterForm()" ng-if="$root.networkResult">{{ 'REGISTER_AS_MEMBER' | translate }}</button>
+        </div>
+        <form name="newCartRegisterForm" novalidate ng-submit="newCartRegisterSubmit(newCartRegisterForm)" class="fade" ng-show="!newCartVisitor">
+            <div class="row">
+                <div class="col col-50">
+                    <label class="item item-input pad-left-0 pad-right-0" ng-class="{
+            'has-errors': newCartRegisterForm.$submitted && newCartRegisterForm.firstName.$invalid,
+            'no-errors': newCartRegisterForm.$submitted && newCartRegisterForm.firstName.$valid
+          }">
+            <input type="text" name="firstName" ng-model="newMember.firstName" placeholder="{{'FIRST_NAME' | translate }}" required />
+          </label>
+          <div class="error-container" ng-show="newCartRegisterForm.$submitted && newCartRegisterForm.firstName.$error" ng-messages="newCartRegisterForm.$submitted && newCartRegisterForm.firstName.$error">
+            <div class="error" ng-message="required">
+              <i class="ion-information-circled"></i>
+              <span translate="MISSING_FIELD" translate-values="{ field : '{{ 'FIRST_NAME' | translate }}' }"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col col-50">
+          <label class="item item-input pad-left-0 pad-right-0" ng-class="{
+            'has-errors': newCartRegisterForm.$submitted && newCartRegisterForm.lastName.$invalid,
+            'no-errors': newCartRegisterForm.$submitted && newCartRegisterForm.lastName.$valid
+          }">
+            <input type="text" name="lastName" ng-model="newMember.lastName" placeholder="{{'LAST_NAME' | translate }}" required />
+          </label>
+          <div class="error-container" ng-show="newCartRegisterForm.$submitted && newCartRegisterForm.lastName.$error" ng-messages="newCartRegisterForm.$submitted && newCartRegisterForm.lastName.$error">
+            <div class="error" ng-message="required">
+              <i class="ion-information-circled"></i>
+              <span translate="MISSING_FIELD" translate-values="{ field : '{{ 'LAST_NAME' | translate }}' }"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-15">
+          <label class="item item-input pad-left-0 pad-right-0" ng-class="{
+            'has-errors': newCartRegisterForm.$submitted && newCartRegisterForm.countryCode.$invalid,
+            'no-errors': newCartRegisterForm.$submitted && newCartRegisterForm.countryCode.$valid
+          }">
+            <input ng-click="selectNewMemberDial()" type="text" name="countryCode" ng-model="newMember.countryCode" placeholder="{{'COUNTRY_CODE' | translate }}" readonly required />
+          </label>
+          <div class="error-container" ng-show="newCartRegisterForm.$submitted && newCartRegisterForm.countryCode.$error" ng-messages="newCartRegisterForm.$submitted && newCartRegisterForm.countryCode.$error">
+            <div class="error" ng-message="required">
+              <i class="ion-information-circled"></i>
+              <span translate="MISSING_FIELD" translate-values="{ field : '{{ 'COUNTRY_CODE' | translate }}' }"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col col-35">
+          <label class="item item-input pad-left-0 pad-right-0" ng-class="{
+            'has-errors': newCartRegisterForm.$submitted && newCartRegisterForm.mobile.$invalid,
+            'no-errors': newCartRegisterForm.$submitted && newCartRegisterForm.mobile.$valid
+          }">
+            <input type="text" name="mobile" ng-model="newMember.mobile" placeholder="{{'MOBILE' | translate }}" ng-pattern="/^\d+$/" required />
+          </label>
+          <div class="error-container" ng-show="newCartRegisterForm.$submitted && newCartRegisterForm.mobile.$error" ng-messages="newCartRegisterForm.$submitted && newCartRegisterForm.mobile.$error">
+            <div class="error" ng-message="required">
+              <i class="ion-information-circled"></i>
+              <span translate="MISSING_FIELD" translate-values="{ field : '{{ 'MOBILE' | translate }}' }"></span>
+            </div>
+            <div class="error" ng-message="pattern">
+              <i class="ion-information-circled"></i>
+              <span translate="DIGIT_ONLY"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col col-50">
+          <label class="item item-input pad-left-0 pad-right-0" ng-class="{
+            'has-errors': newCartRegisterForm.$submitted && newCartRegisterForm.email.$invalid,
+            'no-errors': newCartRegisterForm.$submitted && newCartRegisterForm.email.$valid
+          }">
+                        <input type="email" name="email" ng-model="newMember.email" placeholder="{{'EMAIL' | translate }}" required />
+                    </label>
+                    <div class="error-container" ng-show="newCartRegisterForm.$submitted && newCartRegisterForm.email.$error" ng-messages="newCartRegisterForm.$submitted && newCartRegisterForm.email.$error">
+                        <div class="error" ng-message="required">
+                            <i class="ion-information-circled"></i>
+                            <span translate="MISSING_FIELD" translate-values="{ field : '{{ 'EMAIL' | translate }}' }"></span>
+                        </div>
+                        <div class="error" ng-message="email">
+                            <i class="ion-information-circled"></i>
+                            <span translate="INVALID_EMAIL"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form name="newCartVisitorForm" novalidate class="fade" ng-show="newCartVisitor">
+            <div class="row">
+                <div class="col col-15">
+                    <label class="item item-input pad-left-0 pad-right-0">
+                        <span class="input-label"> {{'Visitor' | translate}}</span>
+                    </label>
+                </div>
+                <div class="col col-20">
+                    <label class="item item-input pad-left-0 pad-right-0">
+                        <input type="text" name="title" ng-model="newVisitor.titleName" placeholder="{{'TITLE' | translate }}" readonly ng-click="selectTitle()" />
+                    </label>
+                </div>
+                <div class="col col-65">
+                    <label class="item item-input pad-left-0 pad-right-0">
+                        <input type="text" name="lastName" ng-model="newVisitor.lastName" placeholder="{{'LAST_NAME' | translate }}" />
+                    </label>
+                </div>
+            </div>
+        </form>
+    </ion-content>
+    <div class="modal-footer">
+        <button class="button button-clear button-energized pull-left" ng-click="cancelNewCart()">{{ 'CANCEL' | translate }}</button>
+        <button class="button button-clear button-calm pull-right" ng-show="!newCartVisitor" ng-click="confirmNewCart('MEMBER')">{{ 'REGISTER' | translate }}</button>
+        <button class="button button-clear button-calm pull-right" ng-show="newCartVisitor" ng-click="confirmNewCart('VISITOR')">{{ 'CREATE_AS_VISITOR' | translate }}</button>
+    </div>
+</ion-modal-view>

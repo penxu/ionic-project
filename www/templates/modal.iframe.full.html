@@ -1,0 +1,19 @@
+<ion-modal-view class="modal-full">
+    <div class="modal-header" ng-click="viewInvoiceC.back()">
+        <button class="pull-left button button-clear button-icon ion-chevron-left"></button>
+        <h1 class="title">
+            {{ 'DAY_END_REPORT' | translate }}
+            
+            <!--<input class="text-center" style="padding-left: 30px;font-size: 20px;" type="text" name="reportDate" ng-model="reportDate" ng-click="popUpDate()" readonly/>-->
+            <span class="text-center" style="margin-left:20px;" type="text" name="reportDate" ng-click="popUpDate();$event.stopPropagation();"><i class="fa fa-calendar" aria-hidden="true"></i>  {{reportDate}}</span>
+        </h1>                
+    </div>
+    <ion-content class="has-modal-header has-modal-footer" scroll="true">
+        <iframe id="iframe-printer" width="100%" height="100%" frameborder="0" src="{{ iframeUrl }}"></iframe>
+    </ion-content>
+    <div class="modal-footer">
+        <!-- <button class="button button-royal pull-left uppercase"  ng-click="popUpDate()">{{ 'PRINT' | translate }}</button> -->
+        
+        <button class="button button-royal pull-right uppercase"  ng-click="printHistory()">{{ 'PRINT' | translate }}</button>
+    </div>
+</ion-modal-view>

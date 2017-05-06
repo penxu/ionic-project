@@ -1,0 +1,10 @@
+<div class="search-button-bar" style="height: 32px !important;margin: 0px !important;">
+    <div class="search-form" ng-if="!('tab.customer-detail' | isState)" style="margin: 0px !important;">
+        <form ng-submit="isSearching?null:homeSearchButtonBar.homeSearchFor(homeSearchButtonBar.homeSearchKeyword)">
+            <i class="pull-left icon placeholder-icon ion-android-search"></i>
+            <i class="pull-right icon placeholder-icon ion-close-circled clear-text" ng-click="homeSearchButtonBar.homeSearchClear()"></i>
+            <input type="search" placeholder="{{ homeSearchButtonBar.homeSearchHints }}" ng-model="homeSearchButtonBar.homeSearchKeyword" />
+            <button type="submit">{{ 'SEARCH' | translate}}</button>
+        </form>
+    </div>
+</div>

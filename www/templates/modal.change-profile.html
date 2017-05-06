@@ -1,0 +1,97 @@
+<ion-modal-view class="modal-275">
+  <ion-content style="min-height: 100%" class="has-modal-footer">
+    <form name="changeProfileForm" novalidate class="fade">
+      <div class="row">
+      	<h4 class="col-90 dimlight">{{ 'CUSTOMER_PROFILE' | translate }}</h4>
+      </div>
+      <div class="row">
+        <div class="col col-50">
+          <label class="item item-input pad-left-0 pad-right-0" ng-class="{
+            'has-errors': changeProfileForm.$submitted && changeProfileForm.firstName.$invalid,
+            'no-errors': changeProfileForm.$submitted && changeProfileForm.firstName.$valid
+          }">
+            <input type="text" name="firstName" ng-model="customerDetailTemp.first_name" placeholder="{{ customerDetailTemp.first_name }}" required />
+          </label>
+          <div class="error-container" ng-show="changeProfileForm.$submitted && changeProfileForm.firstName.$error" ng-messages="changeProfileForm.$submitted && changeProfileForm.firstName.$error">
+            <div class="error" ng-message="required">
+              <i class="ion-information-circled"></i>
+              <span translate="MISSING_FIELD" translate-values="{ field : '{{ 'FIRST_NAME' | translate }}' }"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col col-50">
+          <label class="item item-input pad-left-0 pad-right-0" ng-class="{
+            'has-errors': changeProfileForm.$submitted && changeProfileForm.lastName.$invalid,
+            'no-errors': changeProfileForm.$submitted && changeProfileForm.lastName.$valid
+          }">
+            <input type="text" name="lastName" ng-model="customerDetailTemp.last_name" placeholder="{{ customerDetailTemp.last_name }}" required />
+          </label>
+          <div class="error-container" ng-show="changeProfileForm.$submitted && changeProfileForm.lastName.$error" ng-messages="changeProfileForm.$submitted && changeProfileForm.lastName.$error">
+            <div class="error" ng-message="required">
+              <i class="ion-information-circled"></i>
+              <span translate="MISSING_FIELD" translate-values="{ field : '{{ 'LAST_NAME' | translate }}' }"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-20">
+          <label class="item item-input pad-left-0 pad-right-0" ng-class="{
+            'has-errors': changeProfileForm.$submitted && changeProfileForm.countryCode.$invalid,
+            'no-errors': changeProfileForm.$submitted && changeProfileForm.countryCode.$valid
+          }">
+            <input type="text" name="countryCode" ng-model="customerDetailTemp.country_code" placeholder="{{ customerDetailTemp.country_code  }}" required />
+          </label>
+          <div class="error-container" ng-show="changeProfileForm.$submitted && changeProfileForm.countryCode.$error" ng-messages="changeProfileForm.$submitted && changeProfileForm.countryCode.$error">
+            <div class="error" ng-message="required">
+              <i class="ion-information-circled"></i>
+              <span translate="MISSING_FIELD" translate-values="{ field : '{{ 'COUNTRY_CODE' | translate }}' }"></span>
+            </div>
+          </div>
+        </div>
+        <div class="col col-80">
+          <label class="item item-input pad-left-0 pad-right-0" ng-class="{
+            'has-errors': changeProfileForm.$submitted && changeProfileForm.mobile.$invalid,
+            'no-errors': changeProfileForm.$submitted && changeProfileForm.mobile.$valid
+          }">
+            <input type="text" name="mobile" ng-model="customerDetailTemp.mobile" placeholder="{{ customerDetailTemp.mobile }}" required />
+          </label>
+          <div class="error-container" ng-show="changeProfileForm.$submitted && changeProfileForm.mobile.$error" ng-messages="changeProfileForm.$submitted && changeProfileForm.mobile.$error">
+            <div class="error" ng-message="required">
+              <i class="ion-information-circled"></i>
+              <span translate="MISSING_FIELD" translate-values="{ field : '{{ 'MOBILE' | translate }}' }"></span>
+            </div>
+            <div class="error" ng-message="pattern">
+              <i class="ion-information-circled"></i>
+              <span translate="DIGIT_ONLY"></span>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-100">
+          <label class="item item-input pad-left-0 pad-right-0" ng-class="{
+            'has-errors': changeProfileForm.$submitted && changeProfileForm.email.$invalid,
+            'no-errors': changeProfileForm.$submitted && changeProfileForm.email.$valid
+          }">
+            <input type="email" name="email" ng-model="customerDetailTemp.email" placeholder="{{ customerDetailTemp.email }}" required />
+          </label>
+          <div class="error-container" ng-show="changeProfileForm.$submitted && changeProfileForm.email.$error" ng-messages="changeProfileForm.$submitted && changeProfileForm.email.$error">
+            <div class="error" ng-message="required">
+              <i class="ion-information-circled"></i>
+              <span translate="MISSING_FIELD" translate-values="{ field : '{{ 'EMAIL' | translate }}' }"></span>
+            </div>
+            <div class="error" ng-message="email">
+              <i class="ion-information-circled"></i>
+              <span translate="INVALID_EMAIL"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </ion-content>
+  <div class="modal-footer">
+    <button class="button button-clear button-energized pull-left" ng-click="check_customerdetail.back()">{{ 'CANCEL' | translate }}</button>
+    <button class="button button-clear button-calm pull-right" ng-click="check_customerdetail.save()">{{ 'SAVE' | translate }}</button>
+  </div>
+</ion-modal-view>

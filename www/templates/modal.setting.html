@@ -1,0 +1,143 @@
+<ion-modal-view class="modal-full setting-box">
+    <div class="modal-header" ng-click="settingConfig.back()">
+        <div class="pull-left button button-clear button-icon ion-chevron-left"></div>
+        <h1 class="title">{{ settingConfig.title | translate }}</h1>
+    </div>
+
+
+
+    <!-- main content -->
+
+
+    <!--<ion-content class="has-header setting-content">-->
+    <ion-scroll direction="y" style="right: 0;bottom: 0;left: 0;position: absolute;" class="has-header setting-content"> 
+        <div class="row print-row" style="margin-top: 1px;">
+            <div class="col col-100">
+                <span>{{ 'SHOP' | translate }}</span>
+            </div>
+        </div>
+        <div class="lock-handle">
+            <ul class="list">
+                <li class="item item-toggle">
+                    {{ 'LOCK' | translate}}
+                    <label class="toggle toggle-balanced">
+                        <input type="checkbox">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="row print-row">
+            <div class="col col-100">
+                <span>{{ 'PRINT' | translate }}</span>
+            </div>
+        </div>
+        <div class="cloud-print">
+            <ul class="list">
+                <li class="item item-toggle">
+                    {{ 'CLOUD_PRINT' | translate}}
+                    <label class="toggle toggle-bla">
+                        <input type="checkbox" ng-model="cloudPrint" ng-change="switchCloudPrint(cloudPrint)">
+                        <div class="track">
+                            <div class="handle"></div>
+                        </div>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="list email-input">
+            <label class="item item-input ">
+                <span class="input-label">{{ 'EMAIL' | translate}}</span>
+                <input tyle="email" style="background-color:white;" placeholder="{{ 'EMAIL' | translate }}" class="col col-100" ng-model="cloudPrintAddress" ng-change="changePrintAddr(cloudPrintAddress)" />
+            </label>
+        </div>
+        <div class="row pad">
+            <h5>{{ 'SELECT_PRINTER_TITLE' | translate }}</h5>
+        </div>
+        <!--<div class="row pad">
+                <button class="button pull-right uppercase col col-50 text-left" ng-click="showPrinter()">{{ printerType }}</button>
+            </div>            -->
+        <div class="list email-input">
+            <label class="item item-input" ng-click="showPrinter()">
+                <div class="col col-100 text-left">{{ printerType }}</div>
+            </label>
+        </div>
+        <div class="row pad">
+            <h5>{{ 'EPSON_PRINT' | translate }}</h5>
+        </div>
+        <div class="row pad">
+            <input tyle="text" placeholder="{{ 'IP_ADDRESS' | translate }}" class="col col-33" ng-model="epsonIpAddress" ng-change="changeEpsonIpAddr(epsonIpAddress)" />
+            <input tyle="text" placeholder="{{ 'PORT' | translate }}" class="col col-33" ng-model="epsonPort" ng-change="changeEpsonPort(epsonPort)" />
+            <input tyle="text" placeholder="{{ 'DEVICE_ID' | translate }}" class="col col-33" ng-model="epsonDeviceId" ng-change="changeEpsonDeviceId(epsonDeviceId)" />
+        </div>
+        <!--language-->
+        <div class="row">
+            <div class="col col-100">
+                <span>{{ 'LANGUAGE' | translate }}</span>
+            </div>
+        </div>
+        <div class="info-block info-row ">
+            <div class="row">
+                <div class="col col-100">
+                    <div class="button-bar setting-button-bar ">
+                        <a class="button button-small auto-height button-light btn-mode" ng-class="{ 'button-positive' : currentLang == 'EN_US'  }" ng-click="switchLanguage('EN_US')">{{ 'EN_US' | translate }}</a>
+                        <a class="button button-small auto-height button-light btn-mode" ng-class="{ 'button-positive' : currentLang == 'ZH_HK' }" ng-click="switchLanguage('ZH_HK')">{{ 'ZH_HK' | translate }}</a>
+                        <a class="button button-small auto-height button-light btn-mode" ng-class="{ 'button-positive' : currentLang == 'ZH_CN' }" ng-click="switchLanguage('ZH_CN')">{{ 'ZH_CN' | translate }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<ion-radio ng-repeat="lang in langs" ng-model="$root.currentLang" ng-value="lang" ng-click="switchLanguage(lang)">
+            {{ lang | translate}}
+        </ion-radio>-->
+        <!--      <div class="row">
+        <div style="margin-left:75%;margin-top:10px;">2.1.0421.1</div>
+      </div>-->
+        <div class="row">
+            <div class="col col-100">
+                <span>{{ 'SANDBOX_MODE' | translate }}</span>
+            </div>
+        </div>
+        <div class="info-block info-row ">
+            <div class="row">
+                <div class="col col-100">
+                    <div class="button-bar setting-button-bar ">
+                        <a class="button button-small auto-height button-light btn-mode" ng-class="{ 'button-positive' : sandboxCheckbox  }" ng-click="switchSandbox(true)">{{'SANDBOX_MODE'|translate}}</a>
+                        <a class="button button-small auto-height button-light btn-mode" ng-class="{ 'button-positive' : !sandboxCheckbox }" ng-click="switchSandbox(false)">{{'PRODUCTION_MODE'|translate}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="info-block info-row">
+            <div class="row">
+                <div class="col col-100">
+                    <div class="button-bar setting-button-bar">
+                        <a class="button button-small auto-height button-light btn-mode" ng-class="{ 'button-positive' : !isOffline }" ng-click="switchOffline(true)">{{'ONLINE_MODE'|translate}}</a>
+                        <a class="button button-small auto-height button-light btn-mode" ng-class="{ 'button-positive' : isOffline }" ng-click="switchOffline(false)">{{'OFFLINE_MODE'|translate}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-100">
+                <span>{{ 'OFFLINE_DATA' | translate }}</span>
+            </div>
+        </div>
+        <div class="info-block info-row">
+            <div class="row">
+                <div class="col col-100">
+                    <div class="button-bar setting-button-bar">
+                        <!--<a class="button button-small auto-height button-light col col-50"  ng-click="downloadData()">{{'DOWNLOAD_DATA'|translate}}</a>-->
+                        <!--<a class="button button-small auto-height button-light col col-50"  ng-click="clearDownloadData()">{{'CLEAR_DATA'|translate}}</a>-->
+                        <a class="button button-small auto-height button-light col col-100"  ng-click="downloadData('DOWNLOAD_ASK')">{{'DOWNLOAD_DATA'|translate}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+
+    </ion-scroll>
+    <!--</ion-content>-->
+</ion-modal-view>

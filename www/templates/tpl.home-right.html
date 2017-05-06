@@ -1,0 +1,105 @@
+<p class="lowlight text-center pad-top-sm" ng-show="cartDisplay != 'min'" ng-if="cart.products&&cart.products.length==0" style="font-size: 18px;margin-top: 20px;">
+    {{ 'THIS_CART_IS_EMPTY' | translate }}
+</p>
+
+<ion-content class="main-content has-content-footer cart-items cart-list-content " [overflow-scroll="true"] [scroll="false"] id="buy-cart">
+    <ion-list class="cart-item-list" ng-if="cart">
+        <ion-item ng-repeat="item in cart.products | filter:cartKeyword" ng-click="editCartItem(item,$event)" id="buyList">
+            <div>
+                <div class="item-photo"><img ng-src="{{ item.photo }}" ng-show="item.photo" /></div>
+                <div class="item-detail">
+                    <h3>{{ item.name }}</h3>
+                    <p><span ng-repeat="(key,option) in item.options"> {{ key | cartOptionsFormat }}{{ option.title }}:{{ option.options[0] }}</span> {{ ' ' }}</p>
+                    <p><span>{{ 'QTY' | translate }}:</span> {{ item.qty }}</p>
+                    <h3 class="sub-total">${{ item.sub_total | number:2 }}</h3>
+                </div>
+            </div>
+        </ion-item>
+    </ion-list>
+</ion-content>
+<!--<div class="cart-total">
+    <div class="text-right" style="font-size: 18px;">
+
+        <div style="display: inline-block; margin-right: 117px;"><span class="text-des text-left">{{ 'ITEM_TOTAL' | translate }}</span></div>
+        <span>${{ cart.item_total | number:2 }}</span>
+    </div>
+    <div class="text-right" style="font-size: 18px;">
+      <div style="display: inline-block; margin-right: 150px;"><span class="text-des text-left">{{ 'DISCOUNT_TOTAL' | translate }}</span></div>
+        <span>${{ cart.discount_total | number:2 }}</span>
+    </div>
+    <div class="text-right" style="font-size: 18px;">
+      <div style="display: inline-block; margin-right: 115px;"><span class="text-des">{{ 'SHIPPING_TOTAL' | translate }}</span></div>
+        <span>${{ cart.delivery_total | number:2 }}</span>
+    </div>
+    <div class="text-right" style="font-size: 18px;">
+      <div style="display: inline-block; margin-right: 115px;"><span class="text-des">{{ 'SERVICE_TOTAL' | translate }}</span></div>
+        <span>${{ cart.service_total | number:2 }}</span>
+    </div>
+    <div class="text-right" style="font-size: 18px;">
+      <div style="display: inline-block; margin-right: 111px;"><span class="text-des">{{ 'PAYMENT_TYPE' | translate }}</span></div>
+        <span>{{currentPayment.code}}</span>
+    </div>
+    <h3 class="text-right">
+      <div style="display: inline-block; margin-right: 95px;"><span class="">{{ 'GRAND_TOTAL' | translate }}</span></div>
+        <span>${{ cart.temp_grand_total | number:2 }}</span>
+    </h3>
+</div>-->
+<div class="cart-total">
+    <!--<ion-scroll class="cart-price-scroll">-->
+    <div class="text-right">
+        <div class="price-title"><span class="text-des text-left pull-left">{{ 'ITEM_TOTAL' | translate }}</span>
+            <span class="pull-right">${{ cart.item_total | number:2 }}</span>
+        </div>
+    </div>
+    <div class="text-right" ng-click="editOtherCharge.popoverOtherCharge($event,true)">
+        <div class="price-title"><span class="text-des text-left pull-left">{{ 'DISCOUNT_TOTAL' | translate }}</span>
+            <span class="pull-right">${{ cart.discount_total | number:2 }}</span>
+        </div>
+    </div>
+    <!-- <div class="text-right">
+        <div class="price-title"><span class="text-des pull-left">{{ 'SHIPPING_TOTAL' | translate }}</span>
+            <span class="pull-right">${{ cart.delivery_total | number:2 }}</span>
+        </div>
+    </div> -->
+    <div class="text-right" ng-click="editOtherCharge.popoverOtherCharge($event,false)">
+        <div class="price-title"><span class="text-des pull-left">{{ 'SERVICE_TOTAL' | translate }}</span>
+            <span class="pull-right">${{ cart.service_total | number:2 }}</span>
+        </div>
+    </div>
+    <div class="text-right" ng-click="popOverOperation.popoverPaymentType($event);">
+        <div class="price-title"><span class="text-des pull-left">{{ 'PAYMENT_TYPE' | translate }}</span>
+            <span class="pull-right">{{currentPayment.code}}</span>
+        </div>
+    </div>
+    <div class="text-right" ng-click="popOverOperation.popoverOrderType($event);">
+        <div class="price-title"><span class="text-des pull-left">{{ 'ORDER_TYPE' | translate }}</span>
+            <span class="pull-right">{{currentOrderType.code}}</span>
+        </div>
+    </div>
+    <div class="text-right" style="font-size:18px">
+        <div class="price-title"><span class="pull-left">{{ 'GRAND_TOTAL' | translate }}</span>
+            <span class="pull-right">${{ cart.temp_grand_total | number:2 }}</span>
+        </div>
+    </div>
+</div>
+<!--</ion-scroll>-->
+<div class="confirm-content" ng-show="cartDisplay != 'min'">
+    <div class="confirm-box pull-right" ng-click="processCheckout();">
+        <div class="icon-confirm-out">
+            <img src="img/2.0icon/out.png" alt="">
+        </div>
+        <div class="confirm-text">
+            <text class="chectout">{{ 'CHECK_OUT'|translate }}</text>
+        </div>
+    </div>
+    <div class="confirm-box pull-right" ng-click="$root.clearCart();">
+        <div class="icon-confirm-clear">
+            <img src="img/2.0icon/reset.png" alt="">
+        </div>
+        <div class="confirm-text">
+            <text class="clear">{{ 'CLEAR_ALL'|translate }}</text>
+        </div>
+    </div>
+</div>
+<div class="collapse-btn" ng-click="expandCart()"><i class="fa fa-angle-double-left"></i></div>
+<div class="expand-btn" ng-click="collapseCart()"><i class="fa fa-angle-double-right"></i></div>

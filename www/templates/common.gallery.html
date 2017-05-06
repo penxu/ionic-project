@@ -1,0 +1,21 @@
+<ion-modal-view class="u-gallery">
+	<ion-header-bar>
+		<h1 class="title">
+			<button type="button" class="pull-left button button-clear" ng-click="galleryConfig.closeGallery()">
+			  <i class="ion-chevron-left"></i>
+			</button>
+		</h1>
+	</ion-header-bar>
+	<ion-content>
+    <ion-slide-box pager-click="navSlide(index)" on-slide-changed="slideChanged(index)" active-slide="galleryConfig.activeSlide">
+      <ion-slide ng-repeat="photo in galleryConfig.photos">
+        <ion-scroll direction="xy" scrollbar-x="false" scrollbar-y="false" overflow-scroll="false"
+        zooming="true" min-zoom="{{ galleryConfig.zoomMin }}" style="width: 100%; height: 100%;"
+        delegate-handle="scrollHandle{{ $index }}" on-scroll="galleryConfig.updateSlideStatus(galleryConfig.activeSlide)"
+        on-release="galleryConfig.updateSlideStatus(galleryConfig.activeSlide)">
+          <div class="image"><img ng-src="{{ photo }}" /></div>
+        </ion-scroll>
+      </ion-slide>
+    </ion-slide-box>
+	</ion-content>
+</ion-modal-view>

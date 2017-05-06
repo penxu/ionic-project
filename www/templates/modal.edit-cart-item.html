@@ -1,0 +1,54 @@
+<ion-modal-view class="modal-sm">
+  <!--<ion-content class="has-modal-footer pad-sm" scroll="false" style="min-height: 100%">-->
+   <ion-scroll class="has-modal-footer pad-sm" style="min-height: 100%">
+    <div>
+      <div class="cart-item-detail-left pad-right-sm">
+        <div class="product-photo" ng-click="loadProductDetail(cartItem.id, cartItem.skuNo)">
+          <img ng-src="{{ cartItem.photo }}" ng-if="cartItem.photo" />
+        </div>
+      </div>
+      <div class="cart-item-detail-right">
+        <h1>{{ cartItem.product_name }}</h1>
+        <h3>
+         {{ cartItem.currency }} {{ cartItem.price | number:2 }}
+          <span ng-if="cartItem.original_price != ''" class="original-price">{{ cartItem.currency }} {{ cartItem.original_price | number:2 }}</span>
+        </h3>
+        <div class="product-take">
+          <div>
+            <span>{{ 'AVBL' | translate }}:</span>
+            <span ng-if="cartItem.avbl_qty>=0">{{ cartItem.avbl_qty }}</span>
+            <span ng-if="cartItem.avbl_qty<0">{{ cartItem.avbl_qty }}</span>
+          </div>          
+          <div>
+            <span>{{ 'RSV' | translate }}:</span>
+            {{ cartItem.reserved_amount }}
+          </div>
+        </div>
+        <div class="product-qty">
+          <span>
+            <button class="button button-icon ion-minus-circled positive" ng-click="minusCartItemQty()"></button>
+            <input type="number" ng-model="cartItem.qty" ng-change="cartQtychange()"/>
+            <button class="button button-icon ion-plus-circled positive" ng-click="plusCartItemQty()"></button>
+          </span>
+          <button class="button button-small button-assertive" ng-click="stockLookUp(cartItem.skuNo)">{{ 'STOCK_LOOK_UP' | translate }}</button>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="cart-item-detail-bottom">
+        <div ng-repeat="opt in cartItem.options" class="product-options">
+          <h3>{{ opt.title }}</h3>
+          <div>
+            <span class="active">{{ opt.options[0] }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  <!--</ion-content>-->
+   </ion-scroll>
+  <div class="modal-footer">
+    <button class="button button-clear button-energized pull-left" ng-click="cancelEditCartItem()">{{ 'CANCEL' | translate }}</button>
+    <button class="button button-clear button-calm pull-right" ng-click="confirmEditCartItem()" ng-disabled="cartItem.qty<cartItem.minQty || cartItem.qty>cartItem.maxQty || cartItem.qty==null">{{ 'SAVE' | translate }}</button>
+    <button class="button button-clear button-assertive pull-right" ng-click="deleteEditCartItem()">{{ 'DELETE' | translate }}</button>
+  </div>
+</ion-modal-view>

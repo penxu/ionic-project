@@ -1,0 +1,48 @@
+<ion-modal-view class="modal-full stock-modal">
+<ion-view class="animated fadeIn">
+  <ion-content class="grey-bg" scroll="false">
+  	<div class="sub-bar" ng-click="viewPOut.back()">
+  	  <button class="pull-left button button-clear button-icon ion-chevron-left"></button>
+  		<h1 class="title">{{ 'STOCK_LOOK_UP' | translate }}</h1>
+  	</div>
+  	<div class="pad stock-head-bar">
+      <div class="row data-list sku-bar text-center white-bg">
+        <div class="col col-10"><img class="header-img" src="img/productcode.png"/><span class="vertical-align-top"> #{{product.id}}</span></div>
+        <div class="col col-30 long-text"><img class="header-img" src="img/products_m.png"/><span class="vertical-align-top"> {{product.name}}</span></div>
+        <div class="col col-20"><img class="header-img" src="img/productmodel.png"/><span class="vertical-align-top"> {{product.sku_no}}</span></div>
+        <div class="col col-20 long-text"><span class="vertical-align-top">{{'REMARKS' | translate}}: {{product.remarks}}</span></div>
+        <div class="col col-20"><span class="vertical-align-top">{{'AVAILABLE' | translate}}: <span style="color:#548A4A;font-size:20px;">{{product.qty}}</span></span></div>
+      </div>
+  	</div>
+  	<div class="pad text-center">
+      <div class="row data-header">
+        <div class="col col-20">{{ 'WAREHOUSE' | translate }}</div>
+        <div class="col col-40">{{ 'LOCATION' | translate }}</div>
+        <div class="col col-10">{{ 'PENDING_IN' | translate }}</div>
+        <div class="col col-10">{{ 'PENDING_OUT' | translate }}</div>
+        <div class="col col-10">{{ 'AVAILABLE' | translate }}</div>
+        <div class="col col-10">{{ 'ACTION' | translate }}</div>
+      </div>
+      <!--<ion-content class="main-content pad stock-lookup-list-header" style="padding-top:70px !important">-->
+        <scroll>
+        <ion-list class="data-list" ng-if="product.data">
+          <ion-item  class="text-center" ng-repeat="record in product.data">
+            <div class="row">
+              <div class="col col-20 long-text">{{ record.warehouse_name }}</div>
+              <div class="col col-40 long-text">{{ record.warehouse_location }}</div>
+              <div class="col col-10">{{ record.pending_in }}</div>
+              <div class="col col-10">{{ record.pending_out }}</div>
+              <div class="col col-10">{{ record.qty }}</div>
+              <div class="col col-10">
+              <button class="button" ng-if="(record.qty > 0)" ng-click="openReserveBox(record)">{{ 'RESERVE' | translate }}</button>
+              <button class="button" ng-if="(record.qty <= 0)" ng-click="openReserveBox(record)" disabled>{{ 'RESERVE' | translate }}</button>
+              </div>
+            </div>
+          </ion-item>
+        </ion-list>
+      <!--</ion-content>-->
+        </scroll>
+  	</div>
+  </ion-content>
+</ion-view>
+</ion-modal-view>

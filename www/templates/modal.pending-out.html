@@ -1,0 +1,35 @@
+<ion-modal-view class="modal-full">
+<ion-view class="animated fadeIn">
+  <ion-content class="grey-bg" scroll="false">
+  	<ng-include src="'templates/tpl.search-button-bar.html'"></ng-include>
+  	<div class="sub-bar" ng-click="viewPOut.back()">
+  	  <button class="pull-left button button-clear button-icon ion-chevron-left"></button>
+  		<h1 class="title">{{ 'PENDING_OUT' | translate }}</h1>
+  	</div>
+  	<div class="pad">
+      <div class="row data-header">
+        <div class="col col-10">{{ 'PRODUCT_NO' | translate }}</div>
+        <div class="col col-30">{{ 'PRODUCT_NAME' | translate }}</div>
+        <div class="col col-20">{{ 'INVOICE_NO' | translate }}</div>
+        <div class="col col-10">{{ 'TO' | translate }}</div>
+        <div class="col col-10">{{ 'QTY' | translate }}</div>
+        <div class="col col-20">{{ 'TYPE' | translate }}</div>
+      </div>
+      <ion-content class="main-content pad has-data-list-header">
+        <ion-list class="data-list" ng-if="outList">
+          <ion-item ng-repeat="out in outList" ng-click="loadOutDetail(out.pdf)">
+            <div class="row">
+              <div class="col col-10">{{ out.product_code }}</div>
+              <div class="col col-30">{{ out.product_name }}</div>
+              <div class="col col-20">{{ out.invoice_no }}</div>
+              <div class="col col-10">{{ out.to }}</div>
+              <div class="col col-10">{{ out.qty }}</div>
+              <div class="col col-20">{{ out.type }}</div>
+            </div>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+  	</div>
+  </ion-content>
+</ion-view>
+</ion-modal-view>

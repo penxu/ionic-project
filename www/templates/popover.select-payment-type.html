@@ -1,0 +1,24 @@
+<ion-popover-view class="select-popover-box">
+    <div class="select-popover-title"><span>{{ 'PAYMENT_TYPE' | translate }}</span></div>
+    <!--<div class="arrow-top " ng-show="slectIndex==$index "></div>-->
+    <ion-content class="select-content">
+        <ion-list ng-if="choosePaymentList">
+            <ion-item ng-repeat="paymentInfo in choosePaymentList" ng-if="$index % 3 == 0" style="background-color: #fff;margin: 0px;padding: 0px;border-width: 0px;">
+                <div class="select-popover-content">
+                    <div class="select-type-box pull-left col col-33 " ng-if="choosePaymentList[$index]" ng-click="choosePayment(choosePaymentList[$index])">
+                        <div class="select-img "><img src="img/2.0icon/icon-pay/{{choosePaymentList[$index].name}}.png" alt=" "></div>
+                        <div class="select-text "><span>{{choosePaymentList[$index].code}}</span></div>
+                    </div>
+                    <div class="select-type-box pull-left col col-33 " ng-if="choosePaymentList[$index+1]" ng-click="choosePayment(choosePaymentList[$index+1])">
+                        <div class="select-img "><img src="img/2.0icon/icon-pay/{{choosePaymentList[$index+1].name}}.png" alt=" "></div>
+                        <div class="select-text "><span>{{choosePaymentList[$index+1].code}}</span></div>
+                    </div>
+                    <div class="select-type-box pull-left col col-33 " ng-if="choosePaymentList[$index+2]" ng-click="choosePayment(choosePaymentList[$index+2])">
+                        <div class="select-img "><img src="img/2.0icon/icon-pay/{{choosePaymentList[$index+2].name}}.png" alt=" "></div>
+                        <div class="select-text "><span>{{choosePaymentList[$index+2].code}}</span></div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-popover-view>

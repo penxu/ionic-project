@@ -1,0 +1,21 @@
+<ion-modal-view class="modal-reserve">
+  <ion-content class="has-modal-footer pad-ms" scroll="false">
+    <div>
+      <div class="reserve-box">
+        {{ 'RESERVE_ITEMS' | translate }}
+        <div class="product-qty">
+          <span>
+            <button class="button button-icon ion-minus-circled positive" ng-click="minusReserveQty()"></button>
+            <input type="number" min="1" max="{{ reserve.qty }}" ng-model="reserve.addQty" ng-change="checkreserveAddQty()"/>
+            <button class="button button-icon ion-plus-circled positive" ng-click="plusReserveQty()"></button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <div class="modal-footer">
+    <button class="button button-clear button-energized pull-left" ng-click="viewReserveBox.back()">{{ 'CANCEL' | translate }}</button>
+    <button class="button button-clear button-calm pull-right" ng-if="reserve.addQty <= reserve.qty" ng-click="confirmReserveItem()">{{ 'SAVE' | translate }}</button>
+    <button class="button button-clear button-calm pull-right" ng-if="reserve.addQty > reserve.qty" disabled>{{ 'SAVE' | translate }}</button>
+  </div>
+</ion-modal-view>

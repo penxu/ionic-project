@@ -1,0 +1,20 @@
+<ion-modal-view class="my-modal u-picker">
+	<ion-header-bar>
+		<h1 class="title">
+			<button type="button" class="pull-right button button-clear" ng-click="pickerConfig.confirmClick()">{{ 'CONFIRM' | translate }}</button>
+			<span ng-show="!pickerConfig.hasFilter">{{ pickerConfig.title | translate }}</span>
+			<span class="search-box" ng-show="pickerConfig.hasFilter">
+			    <i class="pull-left icon placeholder-icon ion-android-search"></i>
+			    <i ng-click="keyword=''" class="pull-right icon placeholder-icon ion-close-round clear-text"></i>
+		    	<input type="text" ng-model="keyword" />
+			</span>
+		</h1>
+	</ion-header-bar>
+	<ion-content class="override-header-height override-footer-height">
+		<ion-list>
+			<ion-checkbox ng-repeat="option in pickerConfig.options | filter : keyword"  ng-model="option.checked" ng-checked="option.checked" ng-click="pickerConfig.checkMultiple(option)">
+				{{ option.value }} - {{ option.name }}
+			</ion-checkbox>
+		</ion-list>
+	</ion-content>
+</ion-modal-view>

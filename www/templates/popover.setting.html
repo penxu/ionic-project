@@ -1,0 +1,37 @@
+<ion-popover-view class="setting-popover">
+    <ion-content>
+    <div class="main-menu-header">
+        <div class="user-photo"><i class="ion-android-person"></i></div>
+        <h1>{{ user_name }}</h1>
+        <p>{{$root.loginUser}}</p>
+        <p>{{warehouse_name}}</p>
+    </div>
+    <ion-list class="main-menu-list">
+        <ion-item menu-close ng-click="$root.hideMenu()">
+        <i class="icon ion-ios-cart"></i><span>{{ 'SALES' | translate }}</span>
+        </ion-item>
+        <ion-item menu-close ng-click="$root.orderHistoryOperation.popUpOrderHistory();$event.stopPropagation();">
+        <i class="icon ion-person-stalker"></i><span>{{ 'ORDER_HISTORY' | translate }}</span>
+        </ion-item>
+        <!--<ion-item menu-close>
+        <i class="icon ion-pricetags"></i><span>{{ 'PROMOTION' | translate }}</span>
+        </ion-item>-->
+        <ion-item menu-close ng-click="$root.popOverOperation.popUpMemberList()">
+        <i class="icon ion-briefcase"></i><span>{{ 'CUSTOMER_LIST' | translate }}</span>
+        </ion-item>
+        <ion-item menu-close ng-click="$root.changeState('REFUND', 'tab.refund')">
+        <i class="icon ion-refresh"></i><span>{{ 'MY_ACCOUNT' | translate }}</span>
+        </ion-item>
+
+        <ion-item class="item item-divider"></ion-item>
+        <ion-item menu-close ng-click="$root.popUpSetting()">
+        <i class="icon ion-gear-b"></i><span>{{ 'SETTING' | translate }}</span>
+        </ion-item>
+        <ion-item menu-close ng-click="$root.logout()">
+        <i class="icon ion-share"></i><span>{{ 'LOGOUT' | translate }}</span>
+        </ion-item>
+    </ion-list>
+    <div class="version text-right" style="bottom: 0px;">2.2.0504.2</div>
+    </ion-content>
+
+</ion-popover-view>

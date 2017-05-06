@@ -1,0 +1,14 @@
+<ion-view view-title="{{ title | translate }}" prevent-side-menu-drag hide-tabs>
+
+	<!-- ionContent is used to wrap scrollable content -->
+	<ion-content class="override-footer-height" scroll="false">
+
+	  <!-- options -->
+	  <iframe class="internal-webview" src="{{ url }}"></iframe>
+
+	</ion-content>
+
+	<!-- Footer sits above the tabs and sticks -->
+	<ion-footer-bar class="bar-close" ng-click="goBack()"><i class="yellow ion-chevron-up"></i></ion-footer-bar>
+
+</ion-view>

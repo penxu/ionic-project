@@ -1,0 +1,15 @@
+<ion-modal-view class="modal-sm">
+  <div class="modal-header" ng-click="warehouseConfig.back()">
+    <div class="pull-right button button-clear button-icon ion-close-round"></div>
+    <h1 class="title">{{ warehouseConfig.title | translate }}</h1>
+  </div>
+  <ion-content class="has-modal-header pad">
+  	<ion-list class="data-list" ng-if="warehouseList">
+  	  <ion-item ng-repeat="warehouse in warehouseList track by $index" ng-click="selectWarehouse(warehouse)">
+  	    <div class="row">
+  	      <p>{{ warehouse }}</p>
+  	    </div>
+  	  </ion-item>
+  	</ion-list>
+  </ion-content>
+</ion-modal-view>

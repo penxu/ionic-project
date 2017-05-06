@@ -1,0 +1,24 @@
+<ion-popover-view class="select-popover-box">
+    <div class="select-popover-title"><span>{{ 'ORDER_TYPE' | translate }}</span></div>
+    <!--<div class="arrow-top " ng-show="slectIndex==$index "></div>-->
+    <ion-content class="select-content">
+        <ion-list ng-if="chooseOrderTypeList">
+            <ion-item ng-repeat="paymentInfo in chooseOrderTypeList" ng-if="$index % 3 == 0" style="background-color: #fff;margin: 0px;padding: 0px;border-width: 0px;">
+                <div class="select-popover-content">
+                    <div class="select-type-box pull-left col col-33 " ng-if="chooseOrderTypeList[$index]" ng-click="chooseOrderType(chooseOrderTypeList[$index])">
+                        <div class="select-img "><img src="img/2.0icon/icon-nav/{{chooseOrderTypeList[$index].name}}.png" alt=" "></div>
+                        <div class="select-text "><span>{{chooseOrderTypeList[$index].code}}</span></div>
+                    </div>
+                    <div class="select-type-box pull-left col col-33 " ng-if="chooseOrderTypeList[$index+1]" ng-click="chooseOrderType(chooseOrderTypeList[$index+1])">
+                        <div class="select-img "><img src="img/2.0icon/icon-nav/{{chooseOrderTypeList[$index+1].name}}.png" alt=" "></div>
+                        <div class="select-text "><span>{{chooseOrderTypeList[$index+1].code}}</span></div>
+                    </div>
+                    <div class="select-type-box pull-left col col-33 " ng-if="chooseOrderTypeList[$index+2]" ng-click="chooseOrderType(chooseOrderTypeList[$index+2])">
+                        <div class="select-img "><img src="img/2.0icon/icon-nav/{{chooseOrderTypeList[$index+2].name}}.png" alt=" "></div>
+                        <div class="select-text "><span>{{chooseOrderTypeList[$index+2].code}}</span></div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-popover-view>

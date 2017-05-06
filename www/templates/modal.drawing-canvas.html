@@ -1,0 +1,13 @@
+<ion-modal-view class="modal-drawing">
+  <ion-content class="has-modal-footer" scroll="false">
+     <div class="row pad">
+		<div class="text-right col">
+		  <canvas id='signatureCanvas' width='400' height='250' style='border: 1px solid black;'></canvas>
+		</div>
+	</div>
+  </ion-content>
+  <div class="modal-footer">
+    <button class="button button-clear button-energized pull-left" ng-click="viewInvoice.canvasback()">{{ 'CANCEL' | translate }}</button>
+    <button class="button button-clear button-calm pull-right" ng-click="viewInvoice.next(invoice_id)">{{ 'CONFIRM' | translate }}</button>
+  </div>
+</ion-modal-view>

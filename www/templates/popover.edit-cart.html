@@ -1,0 +1,39 @@
+<ion-popover-view class="edit-cart-popover" style="left:none !important;left:100px;">
+    <div class="arrow-top" ng-show="slectIndex==$index"></div>
+    <ion-header-bar style="background-color:white;">
+        <button class="button button-white large-icon-button ion-close-round" ng-click="popoverBack()"></button>
+        <button class="button button-white large-icon-button ion-android-delete" style="margin-left:85%;" ng-click="confirmDeleteEditCartItem(cartItem)"></button>
+    </ion-header-bar>
+    <ion-content has-bouncing="false" class="has-modal-footer">
+        <div id="slide-title-bar" class="slide-title-bar" style="overflow-x: auto;overflow-y:hidden;">
+            <div class="slide-title" ng-repeat="spec in selectSpecifications" ng-if="spec.enabled && spec.selectible && spec.options.length" ng-click="activeSlide($index)" ng-class="slectIndex==$index ? 'tab_select' : '' ">
+                {{spec.title}}
+            </div>
+        </div>
+        <ion-slide-box class="slide-content" on-slide-changed="slideChanged(index)" active-slide="slideIndex" does-continue="false" show-pager="false">
+            <ion-slide ng-repeat="(key,spec) in selectSpecifications">
+                <scroll direction="y">
+                    <div class="row" ng-repeat="option in spec.options" ng-click="option.selected?resetCartItem(cartItem,spec,option):editCartOptions(cartItem,key, spec.dictionary, option.id);" ng-class="option.selected? 'c-pay-method' : ''">
+                        <div class="col col-50">{{ option.name }}</div>
+                        <div class="col col-50 text-right">{{ option.sign }}${{ option.price }}</div>
+                    </div>
+                </scroll>
+            </ion-slide>
+        </ion-slide-box>
+    </ion-content>
+    <div class="popover-footer">
+        <!--<div class="row">
+              <div class="col col-50">QTY: 4</div>
+              <div class="col col-50">
+                <button style="border:1px green solid;background-color:white;width:70px;">-</button>
+                <button style="border:1px green solid;background-color:white;width:70px;">+</button>
+              </div>
+            </div>          -->
+        <div class="col col-50"> {{ 'QTY' | translate }}: {{ cartItem.qty }}</div>
+        <button class="pull-right" style="border:1px green solid;background-color:white;width:70px;" ng-click="plusAddQty(cartItem)">+</button>
+        <button class="pull-right" style="border:1px green solid;background-color:white;width:70px;" ng-click="minusAddQty(cartItem)" ng-disabled="cartItem.qty==1">-</button>
+    </div>
+    <!--<div class="modal-footer">
+        <button class="button button-clear button-energized pull-left" ng-click="cancelNewCart()">{{ 'CANCEL' | translate }}</button>
+    </div>        -->
+</ion-popover-view>

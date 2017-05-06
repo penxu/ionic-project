@@ -1,0 +1,12 @@
+<ion-modal-view class="modal-full">
+    <div class="modal-header" ng-click="viewInvoiceC.back()">
+        <button class="pull-left button button-clear button-icon ion-chevron-left"></button>
+        <h1 class="title">{{ 'ORDER_SUMMARY' | translate }}</h1>
+    </div>
+    <ion-content class="has-modal-header has-modal-footer" scroll="true">
+        <iframe id="iframe-printer" width="100%" height="100%" frameborder="0" ng-src="{{ iframeUrl }}"></iframe>
+    </ion-content>
+    <div class="modal-footer">
+        <button class="button button-royal pull-right uppercase" ng-click="viewInvoiceC.print()">{{ 'PRINT' | translate }}</button>
+    </div>
+</ion-modal-view>

@@ -1,0 +1,65 @@
+<ion-view view-title="POSIFY" hide-nav-bar="true">
+    <!--<ion-content delegate-handle="form-error" class="splash-page-greenDim">-->
+        <ion-scroll direction="y" style="right: 0;bottom: 0;left: 0;position: absolute;" delegate-handle="form-error" class="splash-page-greenDim">
+            <!--<button on-hold="backToActivate()" style="width:50px;height:30px;opacity:0;"></button>-->
+        <div class="row">
+            <div class="col col-40 col-offset-30 pad-top-lg">
+                <img class="img-responsive" src="{{ shop_icon }}" />
+            </div>
+        </div>
+        <form name="loginForm" novalidate ng-submit="login(loginForm)" class="pad-top-lg">
+            <div class="row">
+                <div class="col col-40 col-offset-30">
+                    <label class="item item-input pad-left-0 pad-right-0" ng-class="{
+            'has-errors': loginForm.$submitted && loginForm.login.$invalid,
+            'no-errors': loginForm.$submitted && loginForm.login.$valid
+          }">
+                        <input type="text" name="login" ng-model="user.login" placeholder="{{ 'USERNAME' | translate }}" required />
+                    </label>
+                    <div class="error-container" ng-show="loginForm.$submitted && loginForm.login.$error" ng-messages="loginForm.$submitted && loginForm.login.$error">
+                        <div class="error" ng-message="required">
+                            <i class="ion-information-circled"></i>
+                            <span translate="MISSING_FIELD" translate-values="{ field : '{{ 'USERNAME' | translate }}' }"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-40 col-offset-30">
+                    <label class="item item-input pad-left-0 pad-right-0" ng-class="{
+            'has-errors'  : loginForm.$submitted && loginForm.password.$invalid,
+            'no-errors'   : loginForm.$submitted && loginForm.password.$valid
+          }">
+                        <input type="password" name="password" ng-model="user.password" ng-minlength="5" ng-maxlength="12" placeholder="{{ 'PASSWORD' | translate }}" required>
+                    </label>
+                    <div class="error-container" ng-show="loginForm.$submitted && loginForm.password.$error" ng-messages="loginForm.$submitted && loginForm.password.$error">
+                        <div class="error" ng-message="required">
+                            <i class="ion-information-circled"></i>
+                            <span translate="MISSING_FIELD" translate-values="{ field : '{{ 'PASSWORD' | translate }}' }"></span>
+                        </div>
+                        <div class="error" ng-message="minlength">
+                            <i class="ion-information-circled"></i>
+                            <span translate="MINIMUM_LENGTH" translate-values="{ num : '5' }"></span>
+                        </div>
+                        <div class="error" ng-message="maxlength">
+                            <i class="ion-information-circled"></i>
+                            <span translate="MAXIMUM_LENGTH" translate-values="{ num : '12' }"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-40 col-offset-30">
+                    <button class="button button-block button-confirm" type="submit" ng-disabled="user.submitting">{{ 'LOGIN' | translate }}</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-40 col-offset-30">
+                    <ion-checkbox ng-model="user.rememberUserName" ng-value="'user.rememberUserName'" ng-click="saveUsername(!user.rememberUserName)">{{ 'REMEMBER_USER_NAME' | translate }}</ion-checkbox>
+                </div>
+            </div>
+        </form>
+        <!--<div class="option-link"><a ng-click="forgotPassword()">{{ 'FORGOT_PASSWORD' | translate }}</a></div>-->
+    <!--</ion-content>-->
+    </ion-scroll>
+</ion-view>

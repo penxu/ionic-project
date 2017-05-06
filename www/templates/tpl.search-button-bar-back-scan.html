@@ -1,0 +1,16 @@
+<div class="search-button-bar" style="width:100%;background-color:#ddd;height: 44px !important;">
+    <button class="button" ng-click="searchButtonBar.back()" style="background-color:#ddd;font-size:27px;min-height: 33px !important;max-height: 33px !important;">
+        <i class="ion-close-round" style="color:white;"></i>
+    </button>
+    <div class="search-form" style="background-color:white;margin: 6px !important;" ng-if="!('tab.customer-detail' | isState)">
+        <form ng-submit="isSearching?null:searchButtonBar.searchFor(searchButtonBar.searchKeyword)">
+            <i class="pull-left icon placeholder-icon ion-android-search"></i>
+            <i class="pull-right icon placeholder-icon ion-close-circled clear-text" ng-click="searchButtonBar.searchKeyword=''"></i>
+            <input type="search" placeholder="{{ searchButtonBar.searchHints }}" ng-model="searchButtonBar.searchKeyword" />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <button class="button" style="background-color:#ddd;font-size:30px;min-height: 33px !important;max-height: 33px !important;" ng-click="searchButtonBar.scanQR()">
+        <i class="ion-qr-scanner" style="color:white;"></i>      
+    </button>
+</div>

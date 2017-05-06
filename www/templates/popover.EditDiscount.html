@@ -1,0 +1,67 @@
+<ion-popover-view class="select-popover-box discount-edit">
+    <div class="discount-panel-box-content ">
+        <div class="number-panel-title">
+            <p>Service Charge</p>
+        </div>
+        <div class="number-panel-value">
+            <p>{{tempDiscountString}}</p>
+        </div>
+        <div class="number-panel-content">
+            <div class="row" ng-repeat="rowData in discountButtonList">
+                <div class="col col-33.33 number-panel-botton col-left" ng-repeat="oneItem in rowData" ng-click="editDiscount.click(oneItem.value)">
+                    <p>{{oneItem.name}}</p>
+                </div>
+                <!--<div class="col col-33.33 number-panel-botton col-middle">
+                    <p>2</p>
+                </div>
+                <div class="col col-33.33 number-panel-botton col-right">
+                    <p>3</p>
+                </div>-->
+            </div>
+            <!--<div class="row">
+                <div class="col col-33 number-panel-botton col-left">
+                    <p>4</p>
+                </div>
+                <div class="col col-33 number-panel-botton col-middle">
+                    <p>5</p>
+                </div>
+                <div class="col col-33 number-panel-botton col-right">
+                    <p>6</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-33 number-panel-botton col-left">
+                    <p>7</p>
+                </div>
+                <div class="col col-33 number-panel-botton col-middle">
+                    <p>8</p>
+                </div>
+                <div class="col col-33 number-panel-botton col-right">
+                    <p>9</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-33 number-panel-botton col-left">
+                    <p>.</p>
+                </div>
+                <div class="col col-33 number-panel-botton col-middle">
+                    <p>0</p>
+                </div>
+                <div class="col col-33 number-panel-botton col-right">
+                    <p>X</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-33 number-panel-botton col-left delete">
+                    <p><i class="icon ion-ios-trash-outline"  ></i> Delete</p>
+                </div>
+                <div class="col col-33 number-panel-botton col-middle currency">
+                    <p>$</p>
+                </div>
+                <div class="col col-33 number-panel-botton col-right percentage">
+                    <p>%</p>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</ion-popover-view>

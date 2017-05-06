@@ -1,0 +1,15 @@
+<ion-list class="category-list">
+    <ion-item-group>
+        <!-- <ion-item-divider color="light"></ion-item-divider> -->
+        <ion-item ng-repeat="category in categories">
+            <div class="row" style="padding: 0px !important;">
+                <div class="col" style="padding: 0px !important;">
+                    <div class=" button-block button-light category-button" ng-click="loadProductList('refresh', category.id, null,category.name)">
+                        <div class="pull-left category-icon"><img class="button-top-icon" src="{{imgList[$index%imgList.length]}}" /></div>
+                        <div class="bottom-center category-font"><span >{{ category.name }}</span></div>
+                    </div>
+                </div>
+            </div>
+        </ion-item>
+    </ion-item-group>
+</ion-list>

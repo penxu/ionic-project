@@ -1,0 +1,83 @@
+<ion-modal-view class="modal-full">
+    <!--<ion-nav-back-button><i class="ion-ios-arrow-back"</ion-nav-back-button>-->
+    <!--<ion-nav-title>Detail</ion-nav-title>-->
+    <div class="modal-header" ng-click="memberDetailModalBack()">
+        <button class="pull-left button button-clear button-icon ion-chevron-left"></button>
+        <h1 class="title">
+            {{ 'CUSTOMER_DETAIL' | translate }}
+            <!--<input class="text-center" style="padding-left: 30px;font-size: 20px;" type="text" name="reportDate" ng-model="reportDate" ng-click="popUpDate()" readonly/>-->
+        </h1>
+    </div>
+    <ion-content class="has-modal-header">
+        <div class="row ">
+            <div class="col col-50">
+                <span>{{ 'CUSTOMER_PROFILE' | translate}}</span>
+            </div>
+            <div class="col col-50">
+                <span>{{ 'REWORD_POINT' | translate}}</span>
+            </div>
+        </div>
+        <div class="row" style="background-color:#ddd;">
+            <div class="col col-50">
+                <div class="member-card">
+                    <div class="member-card-left">
+                        <h1>{{customerDetail.default_shipping_address}}</h1>
+                        <h3>{{customerDetail.first_name}} {{customerDetail.last_name}}</h3>
+                        <p class="balanced">
+                            <i class="ion-record"></i> {{ customerDetail.VIP_LEVEL }}
+                        </p>
+                        <div class="bottom-left">
+                            <p>{{ 'CARD_NO' | translate }}: {{customerDetail.prefix}}-{{customerDetail.member_id| numberFixedLen:10 }}</p>
+                            <p>{{ 'ISSUE_DATE' | translate }}: {{customerDetail.birthday}}</p>
+                        </div>
+                    </div>
+                    <div class="member-card-right">
+                        <div class="user-photo"><i class="ion-android-person"></i></div>
+                        <div class="bottom-right">
+                            <img class="img-responsive" src="img/posify_r.png" />
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="col col-50">
+                <div class="member-points">
+                    <h1 class="point-text">{{customerDetail.reward_point}}</h1>
+                    <h3 class="point-title">{{ 'POINT' | translate }}</h3>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col col-100">
+                <span>{{ 'ORDER_HISTORY' | translate}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pad text-center" style="width:100%;">
+                <div class="row data-header">
+                    <div class="col col-15">{{ 'ORDER_NO' | translate }}</div>
+                    <div class="col col-30">{{ 'DATE' | translate }}</div>
+                    <div class="col col-10">{{ 'ITEM' | translate }}</div>
+                    <div class="col col-20">{{ 'ORDER_AMOUNT' | translate }}</div>
+                    <div class="col col-25">{{ 'STATUS' | translate }}</div>
+                </div>
+                <div class="col col-100 no-data-text" ng-if="cartList.length < 1">
+                    <span>{{ 'NO_MORE_DATA' | translate}}</span>
+                </div style="background-color:#ddd">
+                <ion-list class="data-list-dim" ng-if="cartList">
+                    <ion-item ng-repeat="cart in cartList">
+                        <div class="row" ng-click="loadInvoiceDetail(cart.pdf)">
+                            <div class="col col-15">{{ cart.invoice_no }}</div>
+                            <div class="col col-30">{{ cart.invoice_date }}</div>
+                            <div class="col col-10">{{ cart.item_count }}</div>
+                            <div class="col col-20">${{ cart.price | number:2 }}</div>
+                            <div class="col col-25">{{ cart.status }}</div>
+                        </div>
+                    </ion-item>
+                </ion-list>
+                <ion-infinite-scroll ng-if="cartList.length != cartCount" immediate-check="false" on-infinite="loadcartList('more')" distance="1%"></ion-infinite-scroll>
+            </div>
+        </div>
+    </ion-content>
+</ion-modal-view>

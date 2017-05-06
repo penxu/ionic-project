@@ -1,0 +1,24 @@
+<ion-modal-view delegate-handle="form-error" class="modal-reserve">
+    <form name="discountForm" novalidate>
+        <div class="reserve-box">
+            {{ 'DISCOUNT' | translate }} :
+        </div>
+
+        <label class="row">
+           <input class="col col-90" type="number" ng-model="currentDiscount.val" name="discount" min="0" ng-max="100" required/>
+           <span class="col col-10">%</span>
+        </label>
+
+
+        <div class="error-container" ng-messages="discountForm.discount.$error" role="alert">
+            <span ng-message="required" translate="MISSING_FIELD" translate-values="{ field : '{{ 'DISCOUNT' | translate }}' }"></span>
+            <div ng-message="min" translate="MIN_VALUE" translate-values="{value:'0'}"></div>
+            <div ng-message="max" translate="MAX_VALUE" translate-values="{value:'100'}"></div>
+        </div>
+
+    </form>
+    <div class="modal-footer">
+        <button class="button button-clear button-energized pull-left" ng-click="cancelDiscount()">{{ 'CANCEL' | translate}}</button>
+        <button class="button button-clear button-calm pull-right" ng-click="saveDiscount(discountForm)">{{ 'SAVE' | translate}}</button>
+    </div>
+</ion-modal-view>

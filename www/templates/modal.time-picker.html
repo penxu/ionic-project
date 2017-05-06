@@ -1,0 +1,34 @@
+<ion-modal-view class="my-modal u-picker u-picker-two-col time-picker">
+	<ion-header-bar>
+        <span>{{'SELECT_HOUR' | translate}}</span>
+	</ion-header-bar>
+	<ion-content scroll="false">
+        <div class="u-picker-two-col">
+            <div class="row">
+                <ion-scroll class="col col-50 two-col-picker">
+                    <span>{{'TIME_FROM' | translate}}</span>
+                    <ion-list>
+                        <ion-item ng-repeat="hour in hourInfo" ng-click="hourPicker.chooseFrom($index)" ng-class="{'selected-item':from==$index,'un-selected-item':from!=$index}">
+                            <div class="text-center">{{hour.title}}</div>
+                        </ion-item>
+                                              
+                    </ion-list>
+                </ion-scroll>
+                <ion-scroll class="col col-50 two-col-picker">
+                    <span>{{'TIME_TO' | translate}}</span>
+                    <ion-list>
+                       <ion-item ng-repeat="hour in hourInfo" ng-click="hourPicker.chooseTo($index)" ng-class="{'selected-item':to==$index,'un-selected-item':to!=$index}">
+                            <div class="text-center">{{hour.title}}</div>
+                        </ion-item>                                               
+                    </ion-list>
+                </ion-scroll>
+            </div>
+        </div> 
+	</ion-content>
+    <ion-footer-bar>
+        
+            <button type="button" class="pull-left button button-positive" ng-click="hourPicker.modalConfirm()">{{ 'CONFIRM' | translate }}</button>
+			<button type="button" class="pull-right button button-assertive" ng-click="hourPicker.modalBack()">{{ 'CANCEL' | translate }}</button>
+	       
+    </ion-footer-bar>
+</ion-modal-view>

@@ -1,0 +1,35 @@
+<ion-modal-view class="modal-full">
+    <!--<ion-header-bar>-->
+        <!--<h1 class="title">
+            <button type="button" class="pull-right button button-clear" ng-click="pickerConfig.cancelClick()">{{ 'CANCEL' | translate }}</button>
+            <span ng-show="!pickerConfig.hasFilter">{{ pickerConfig.title | translate }}</span>
+            <span class="search-box" ng-show="pickerConfig.hasFilter">
+             <i class="pull-left icon placeholder-icon ion-android-search"></i>
+             <i ng-click="keyword=''" class="pull-right icon placeholder-icon ion-close-round clear-text"></i>
+             <input type="text" ng-model="keyword" />
+            </span>
+        </h1>-->
+  	<ng-include src="'templates/tpl.search-button-bar-back-scan.html'"></ng-include>
+    <!--</ion-header-bar>-->
+    <!-- main content -->
+    <ion-content class="has-header setting-content">
+        <p class="lowlight text-center pad-top-sm" ng-if="pickUpList&&pickUpList.length==0">{{ 'NO_RECORD_FOUND' | translate }}
+        </p>
+        <ion-refresher on-refresh="$root.loadPickUpList('refresh')"></ion-refresher>
+        <ion-list class="order-list" ng-repeat="invoice in pickUpList" ng-click="$root.loadInvoiceDetail(invoice)">
+            <ion-item>
+                <h2>
+                    <i class="ion-record balanced"></i>
+                    <span>{{ invoice.name }}</span>
+                </h2>
+                <p class="text-balanced">{{ invoice.member_id }}</p>
+ 
+                <p class="lowlight">{{ 'CART' | translate }}: #{{ invoice.invoice_no }}</p>
+                <p class="lowlight">{{ 'SUBTOTAL' | translate }}: {{invoice.currency}} {{ invoice.price | number:2  }}</p>
+                <p class="bottom-right">{{ invoice.invoice_date }}</p>                
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll ng-if="$root.pickUpList.length != $root.invoiceCount" immediate-check="false" on-infinite="$root.loadPickUpList('more')" distance="1%"></ion-infinite-scroll>
+    </ion-content>
+</ion-modal-view>
+

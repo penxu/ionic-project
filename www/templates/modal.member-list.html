@@ -1,0 +1,49 @@
+<ion-modal-view class="modal-full">
+    <!--<ion-header-bar>-->
+        <!--<h1 class="title">
+            <button type="button" class="pull-right button button-clear" ng-click="pickerConfig.cancelClick()">{{ 'CANCEL' | translate }}</button>
+            <span ng-show="!pickerConfig.hasFilter">{{ pickerConfig.title | translate }}</span>
+            <span class="search-box" ng-show="pickerConfig.hasFilter">
+             <i class="pull-left icon placeholder-icon ion-android-search"></i>
+             <i ng-click="keyword=''" class="pull-right icon placeholder-icon ion-close-round clear-text"></i>
+             <input type="text" ng-model="keyword" />
+            </span>
+        </h1>-->
+  	<ng-include src="'templates/tpl.search-button-bar-back-scan.html'"></ng-include>
+    <!--</ion-header-bar>-->
+    <!-- main content -->
+    <ion-content class="has-header setting-content">
+        <ion-refresher on-refresh="loadMenuCustomerList('refresh')"></ion-refresher>
+        <p class="lowlight text-center pad-top-sm" ng-if="menuCustomerList&&menuCustomerList.length==0">{{ 'NO_RECORD_FOUND' | translate }}
+        </p>
+        <ion-list class="order-list">
+            <!--<ion-item>
+                <h2>
+                    <i class="ion-record balanced"></i>
+                    <span>member list</span>
+                </h2>
+                <p class="text-balanced">{{ 'VISITOR' | translate }}</p>
+ 
+                <p class="lowlight">{{ 'CART' | translate }}: #{{warehouse_code}}-{{ cart.id }}</p>
+                <p class="lowlight">{{ 'ITEM' | translate }}: {{ cart.item_count }}</p>
+                <p class="bottom-right">{{ 'SUBTOTAL' | translate }}: ${{ cart.price | number:2 }}</p>                
+            </ion-item>                  -->
+            <ion-list>
+                <ion-item ng-repeat="customer in menuCustomerList" ng-click="$root.proccessMenuMemberDetail(customer.member_id)">
+                    <h3>
+                      <span class="pull-left">
+                        <i class="ion-record balanced"></i> {{ customer.first_name }} {{ customer.last_name }}
+                      </span>
+                      <!-- <span class="pull-right lowlight text-normal" ng-click="goToCart(customer.user_id);$event.stopPropagation();">
+                       {{ 'GO_TO_CART' | translate }}
+                      </span> -->
+                    </h3>
+                    <p class="text-balanced">{{ customer.VIP_LEVEL }}</p>
+                    <p class="lowlight">{{ 'CUSTOMER_NO' | translate }}: {{customer.prefix}}-{{customer.member_id| numberFixedLen:10 }}</p>
+                    <p class="lowlight">{{ 'PHONE' | translate }}: <span ng-if="customer.mobile">{{customer.country_code}} </span>{{customer.mobile}}</p>
+                </ion-item>
+            </ion-list>      
+            <ion-infinite-scroll ng-if="menuCustomerList.length != menuCustomerCount" immediate-check="false" on-infinite="loadMenuCustomerList('more')" distance="1%"></ion-infinite-scroll>                  
+        </ion-list>
+    </ion-content>
+</ion-modal-view>

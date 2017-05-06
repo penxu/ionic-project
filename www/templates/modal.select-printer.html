@@ -1,0 +1,15 @@
+<ion-modal-view class="modal-sm">
+  <div class="modal-header" ng-click="printerConfig.back()">
+    <div class="pull-right button button-clear button-icon ion-close-round"></div>
+    <h1 class="title">{{ printerConfig.title | translate }}</h1>
+  </div>
+  <ion-content class="has-modal-header pad">
+  	<ion-list class="data-list" ng-if="printerList">
+  	  <ion-item ng-repeat="printer in printerList track by $index" ng-click="selectPrinter(printer)">
+  	    <div class="row">
+  	      <p>{{ printer }}</p>
+  	    </div>
+  	  </ion-item>
+  	</ion-list>
+  </ion-content>
+</ion-modal-view>

@@ -1,0 +1,30 @@
+<ion-modal-view class="modal-lg">
+<ion-view class="animated fadeIn">
+  <ion-content class="grey-bg" scroll="false">
+  	<div class="pad text-center">
+      <div class="row data-header">
+        <div class="col col-15">{{ 'CUSTOMER_NO' | translate }}</div>
+        <div class="col col-30">{{ 'CUSTOMER_NAME' | translate }}</div>
+        <div class="col col-20">{{ 'MOBILE' | translate }}</div>
+        <div class="col col-20">{{ 'GRADE' | translate }}</div>
+      </div>
+      <ion-content class="main-content pad has-data-list-header checkout">
+        <ion-list class="data-list" ng-if="customerList">
+          <ion-item ng-repeat="customer in customerList">
+            <div class="row"  ng-click="confirmChangeMember(customer.user_id)">
+              <div class="col col-15">{{ customer.member_id }}</div>
+              <div class="col col-30">{{ customer.first_name }} {{ customer.last_name }}</div>
+              <div class="col col-20">{{ customer.mobile }}</div>
+              <div class="col col-20">{{ customer.VIP_LEVEL }}</div>
+            </div>
+          </ion-item>
+        </ion-list>
+        <ion-infinite-scroll ng-if="customerList.length != customerCount" on-infinite="loadCustomerList('more')" immediate-check="false" distance="1%"></ion-infinite-scroll>
+      </ion-content>
+  	</div>
+  </ion-content>
+  <div class="modal-footer">
+    <button class="button button-clear button-energized pull-left" ng-click="searchMember.back()">{{ 'CANCEL' | translate }}</button>
+  </div>
+</ion-view>
+</ion-modal-view>

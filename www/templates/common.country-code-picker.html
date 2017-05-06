@@ -1,0 +1,15 @@
+<ion-modal-view class="my-modal u-picker">
+    <ion-header-bar>
+        <h1 class="title">
+            <button type="button" class="pull-right button button-clear" ng-click="pickerConfig.cancelClick()">{{ 'CANCEL' | translate }}</button>            {{ pickerConfig.title | translate }}
+        </h1>
+    </ion-header-bar>
+    <ion-content>
+        <ion-list>
+			<ion-checkbox ng-repeat="option in countryOptions" ng-model="option.checked" ng-checked="option.checked" ng-click="pickerConfig.checkMultiple(option)">
+				{{ option.name }}
+			</ion-checkbox>            
+        </ion-list>
+         <ion-infinite-scroll ng-if="countryOptions.length != countryCount" on-infinite="pickerConfig.loadMore()" immediate-check="false" distance="1%"></ion-infinite-scroll>
+    </ion-content>
+</ion-modal-view>

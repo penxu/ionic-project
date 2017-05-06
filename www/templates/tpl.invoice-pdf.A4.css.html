@@ -1,0 +1,159 @@
+body {
+  margin:0;
+  font-family:Arial,Helvetica Neue,Helvetica,sans-serif;
+  font-size:12px;
+}
+
+.page:not(:last-child) {
+  width:21cm;
+  height:29.7cm;
+  margin:0.5cm;
+  page-break-after: always;
+}
+
+.header {
+  height:2cm;
+  overflow:hidden;
+  margin-bottom:0.5cm;
+}
+
+.body {
+  height:24cm;
+  margin-bottom:0.5cm;
+}
+
+.footer {
+  height:2.7cm;
+}
+
+.header .logo {
+  float:left;
+  max-height:2cm;
+  max-width:8cm;
+}
+
+.header .qr-code {
+  margin-left:8cm;
+  text-align:right;
+}
+
+.header .qr-code h1 {
+  font-weight:500;
+  margin:0;
+}
+
+.header .qr-code h1 > img {
+  height:1cm;
+  width:1cm;
+  vertical-align:middle;
+  margin-left:0.2cm;
+}
+
+table {
+  width:100%;
+  border-spacing:0;
+  border-collapse:collapse;
+}
+
+th, td {
+  font-size:12px;
+  vertical-align:top;
+  padding:0.1cm 0.1cm;
+  line-height:1.5em;
+}
+
+.customer-table {
+  margin-bottom:0.5cm;
+}
+
+.customer-table tr > td:nth-child(odd) {
+  font-weight:bold;
+  width:3.5cm;
+}
+
+.customer-table tr > td:nth-child(2) {
+  width:5cm;
+}
+
+.product-table {
+  margin-bottom:0.5cm;
+}
+
+.product-table tr:first-child > td {
+  border-top:1px solid #ccc;
+  font-weight:bold;
+  text-transform:uppercase;
+}
+
+.product-table tr > td {
+  border-bottom:1px solid #ccc;
+}
+
+.product-table tr:last-child > td {
+  border-bottom:1px solid #000;
+}
+
+.product-table tr > td:nth-child(1) {
+  text-align:center;
+}
+
+.product-table tr > td:nth-child(2) {
+  text-align:left;
+}
+
+.product-table tr > td:nth-child(3) {
+  text-align:left;
+}
+
+.product-table tr > td:nth-child(4) {
+  text-align:center;
+}
+
+.product-table tr > td:nth-child(5) {
+  text-align:right;
+}
+
+.product-table tr > td:nth-child(6) {
+  text-align:right;
+}
+
+.product-table tr > td:nth-child(7) {
+  text-align:right;
+}
+
+.summary-table {
+  margin-bottom:0.5cm;
+}
+
+.summary-table tr > td:nth-child(odd) {
+  font-weight:bold;
+  width:3.5cm;
+}
+
+.summary-table tr > td:nth-child(2) {
+  width:5cm;
+}
+
+.summary-table th, .summary-table td {
+  padding:0 0.1cm;
+}
+
+.footer table tr > td {
+  font-size:10px;
+  text-align:center;
+}
+
+.footer table tr > td:nth-child(odd) {
+  width:4.5cm;
+}
+
+.footer table tr > td:nth-child(odd) .qr-code > img {
+  height:1cm;
+  width:1cm;
+  margin-bottom:0.1cm;
+}
+
+.footer table tr > td:nth-child(odd) .qr-desc > img {
+  width:1.2cm;
+  vertical-align:bottom;
+}

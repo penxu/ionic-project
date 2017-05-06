@@ -1,0 +1,14 @@
+<ion-view class="animated fadeIn" hide-tabs>
+    <ion-content class="grey-bg" scroll="false">
+        <!-- <ng-include src="'templates/tpl.search-button-bar.html'"></ng-include> -->
+        <div class="main-content-left" ng-class="{ 'min' : cartDisplay == 'max', 'max' : cartDisplay == 'min' }">
+            <ng-include src="'templates/tpl.home-left.html'"></ng-include>
+        </div>
+        <div class="main-content-right" style="top: 0 !important;" ng-class="{ 'min' : cartDisplay == 'min', 'max' : cartDisplay == 'max' }">
+            <ng-include src="'templates/tpl.home-right.html'"></ng-include>
+        </div>
+        <div class="pop-backdrop">
+            <ng-include ng-show="showCartItem" src="'templates/popover.edit-cart.html'"></ng-include>
+        </div>
+    </ion-content>
+</ion-view>

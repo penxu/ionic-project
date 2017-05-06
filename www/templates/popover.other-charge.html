@@ -1,0 +1,135 @@
+<ion-popover-view class="select-popover-box">
+    <div class="other-charge-box-content">
+        <div class="other-charge-title">
+            <p>{{ popoverTitle }}</p>
+        </div>
+      <ion-content class="other-charge-scroll">
+        <div class="other-charge-content">
+
+            <div class="row" ng-repeat="chargeInfo in otherCharges" ng-click="clickChargeItem($index);$event.stopPropagation();"  ng-class="chargeStatus[$index] ? 'chosen-color' : ''" ng-if="isDiscount && chargeInfo.sign=='-'">
+                <div class="col col-50 col-left">
+                    <p>{{chargeInfo.title_EN_US}}</p>
+                </div>
+                <div class="col col-50 col-middle">
+                    <p ng-if="chargeInfo.value_type!='percent'">({{otherCharges[$index].sign}})${{otherCharges[$index].value}}</p>
+                    <p ng-if="chargeInfo.value_type=='percent'">({{otherCharges[$index].sign}}){{otherCharges[$index].value}}%</p>
+                </div>
+                <!--<div class="col col-30 col-right">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="width:10%"><i class="icon ion-ios-minus-outline plus"></i></td>
+                            <td style="width:80%;text-align: center;"><div class="value">0</div></td>
+                            <td style="width:10%"><i class="icon ion-ios-plus-outline minus"></i></td>
+                        </tr>
+                    </table>
+                </div>-->
+            </div>
+            <div class="row" ng-repeat="chargeInfo in otherCharges" ng-click="clickChargeItem($index);$event.stopPropagation();"  ng-class="chargeStatus[$index] ? 'chosen-color' : ''" ng-if="!isDiscount && chargeInfo.sign=='+'">
+                <div class="col col-50 col-left">
+                    <p>{{chargeInfo.title_EN_US}}</p>
+                </div>
+                <div class="col col-50 col-middle">
+                    <p>({{otherCharges[$index].sign}})${{otherCharges[$index].value}}</p>
+                </div>
+                <!--<div class="col col-30 col-right">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="width:10%"><i class="icon ion-ios-minus-outline plus"></i></td>
+                            <td style="width:80%;text-align: center;"><div class="value">0</div></td>
+                            <td style="width:10%"><i class="icon ion-ios-plus-outline minus"></i></td>
+                        </tr>
+                    </table>
+                </div>-->
+            </div>
+          <div class="row" ng-repeat="chargeInfo in otherCharges" ng-click="clickChargeItem($index);$event.stopPropagation();"  ng-class="chargeStatus[$index] ? 'chosen-color' : ''" ng-if="!isDiscount && chargeInfo.sign=='+'">
+            <div class="col col-50 col-left">
+              <p>{{chargeInfo.title_EN_US}}</p>
+            </div>
+            <div class="col col-50 col-middle">
+              <p>({{otherCharges[$index].sign}})${{otherCharges[$index].value}}</p>
+            </div>
+            <!--<div class="col col-30 col-right">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:10%"><i class="icon ion-ios-minus-outline plus"></i></td>
+                        <td style="width:80%;text-align: center;"><div class="value">0</div></td>
+                        <td style="width:10%"><i class="icon ion-ios-plus-outline minus"></i></td>
+                    </tr>
+                </table>
+            </div>-->
+          </div>
+          <div class="row" ng-repeat="chargeInfo in otherCharges" ng-click="clickChargeItem($index);$event.stopPropagation();"  ng-class="chargeStatus[$index] ? 'chosen-color' : ''" ng-if="!isDiscount && chargeInfo.sign=='+'">
+            <div class="col col-50 col-left">
+              <p>{{chargeInfo.title_EN_US}}</p>
+            </div>
+            <div class="col col-50 col-middle">
+              <p>({{otherCharges[$index].sign}})${{otherCharges[$index].value}}</p>
+            </div>
+            <!--<div class="col col-30 col-right">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:10%"><i class="icon ion-ios-minus-outline plus"></i></td>
+                        <td style="width:80%;text-align: center;"><div class="value">0</div></td>
+                        <td style="width:10%"><i class="icon ion-ios-plus-outline minus"></i></td>
+                    </tr>
+                </table>
+            </div>-->
+          </div>
+          <div class="row" ng-repeat="chargeInfo in otherCharges" ng-click="clickChargeItem($index);$event.stopPropagation();"  ng-class="chargeStatus[$index] ? 'chosen-color' : ''" ng-if="!isDiscount && chargeInfo.sign=='+'">
+            <div class="col col-50 col-left">
+              <p>{{chargeInfo.title_EN_US}}</p>
+            </div>
+            <div class="col col-50 col-middle">
+              <p>({{otherCharges[$index].sign}})${{otherCharges[$index].value}}</p>
+            </div>
+            <!--<div class="col col-30 col-right">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:10%"><i class="icon ion-ios-minus-outline plus"></i></td>
+                        <td style="width:80%;text-align: center;"><div class="value">0</div></td>
+                        <td style="width:10%"><i class="icon ion-ios-plus-outline minus"></i></td>
+                    </tr>
+                </table>
+            </div>-->
+          </div>
+          <div class="row" ng-repeat="chargeInfo in otherCharges" ng-click="clickChargeItem($index);$event.stopPropagation();"  ng-class="chargeStatus[$index] ? 'chosen-color' : ''" ng-if="!isDiscount && chargeInfo.sign=='+'">
+            <div class="col col-50 col-left">
+              <p>{{chargeInfo.title_EN_US}}</p>
+            </div>
+            <div class="col col-50 col-middle">
+              <p>({{otherCharges[$index].sign}})${{otherCharges[$index].value}}</p>
+            </div>
+            <!--<div class="col col-30 col-right">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:10%"><i class="icon ion-ios-minus-outline plus"></i></td>
+                        <td style="width:80%;text-align: center;"><div class="value">0</div></td>
+                        <td style="width:10%"><i class="icon ion-ios-plus-outline minus"></i></td>
+                    </tr>
+                </table>
+            </div>-->
+          </div>
+          <div class="row" ng-repeat="chargeInfo in otherCharges" ng-click="clickChargeItem($index);$event.stopPropagation();"  ng-class="chargeStatus[$index] ? 'chosen-color' : ''" ng-if="!isDiscount && chargeInfo.sign=='+'">
+            <div class="col col-50 col-left">
+              <p>{{chargeInfo.title_EN_US}}</p>
+            </div>
+            <div class="col col-50 col-middle">
+              <p>({{otherCharges[$index].sign}})${{otherCharges[$index].value}}</p>
+            </div>
+            <!--<div class="col col-30 col-right">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:10%"><i class="icon ion-ios-minus-outline plus"></i></td>
+                        <td style="width:80%;text-align: center;"><div class="value">0</div></td>
+                        <td style="width:10%"><i class="icon ion-ios-plus-outline minus"></i></td>
+                    </tr>
+                </table>
+            </div>-->
+          </div>
+
+
+
+        </div>
+      </ion-content>
+    </div>
+</ion-popover-view>

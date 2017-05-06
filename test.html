@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+  <div style="height: 200px;width: 200px;border: 1px solid red ;overflow: auto" id="div1" >
+    <div id="div2">
+      <p style="width: 100%;">
+        Lorem ipsum dolor sit amet, consectetur adipisicing
+        elit. Accusantium, amet debitis delectus, distinctio
+        dolor dolorum eligendi fugiat illo iste natus quas
+        recusandae reiciendis sint, temporibus vitae? Architecto consequatur illo rem.
+        Lorem ipsum dolor sit amet, consectetur adipisicing
+        elit. Aliquid amet commodi est et laborum, obcaecati
+        repellendus ut! Dolorem in provident quia quibusdam
+        quidem. Autem facere, quasi quos tempore totam ullam?
+      </p>
+    </div>
+  </div>
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.js"
+    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+    crossorigin="anonymous"></script>
+  <script>
+    var div1 = document.getElementById('div1');
+
+//    console.log(div2);
+//    var top = div2.scrollTop;
+//    console.log(top,11111);
+//      $(div1).on('scroll',function(){
+//      // div 滚动了
+//      console.log('滚动了',div1.scrollTop);
+//      if ($('#div').scrollTop() >= (1000-200)) {
+//        // 滚动到底部了
+//        alert('滚动到底部了');
+//      }
+//    });
+    setInterval(function () {
+
+        console.log(div1.scrollLeft);
+        div1.scrollTop  = div1.scrollHeight;
+      console.log(div1.scrollLeft);
+    },2000)
+  </script>
+
+</body>
+</html>

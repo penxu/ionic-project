@@ -1,0 +1,200 @@
+<form ng-submit="viewInvoice.drawCanvas()" class="pad-0">
+<ion-modal-view class="modal-full">
+  <div class="modal-header" ng-click="viewInvoice.back()">
+    <div class="pull-left button button-clear button-icon ion-chevron-left"></div>
+    <h1 class="title">{{ viewInvoice.title | translate }}</h1>
+  </div>
+  <!--<ion-content class="has-modal-header has-modal-footer">-->
+<ion-scroll direction="y" style="right: 0;left: 0;position: absolute;" class="has-modal-header has-modal-footer">	  
+  	<div class="row text-center">
+		<div class="col col-33">
+			<h5>{{ 'ATTN' | translate }}</h5>
+			<p>{{ invoiceDetail.customer_name }} </p>
+		</div>
+		<div class="col col-33">
+			<h5>{{ 'INVOICE_NO' | translate }}</h5>
+			<p>{{ invoiceDetail.invoice_no }} </p>
+		</div>
+		<div class="col col-34">
+			<h5>{{ 'DATE' | translate }}</h5>
+			<p>{{ invoiceDetail.invoice_date }} </p>
+		</div>
+	</div>
+  	<div class="row text-center">
+		<div class="col col-33">
+			<h5>{{ 'DELIVERY_TYPE' | translate }}</h5>
+			<p ng-if="invoiceDetail.delivery_type == 'shipping'">{{ 'DELIVERY' | translate }} </p>
+			<p ng-if="invoiceDetail.delivery_type != 'shipping'">{{ invoiceDetail.delivery_type }} </p>
+		</div>
+		<div class="col col-33" ng-if="('tab.pick-up' | isState)">
+			<h5>{{ 'PICK_UP_DATE' | translate }}</h5>
+			<p>{{ myDate }}</p>
+		</div>
+		<div class="col col-33" ng-if="('tab.refund' | isState)">
+			<h5>{{ 'PAYMENT_METHOD' | translate }}</h5>
+			<p>{{ invoiceDetail.pay_method }} </p>
+		</div>
+		<div class="col col-34">
+			<h5>{{ 'SALESMAN' | translate }}</h5>
+			<p>{{ invoiceDetail.sales }} </p>
+		</div>
+	</div>
+  	<div class="row text-center" ng-if="('tab.pick-up' | isState)">
+		<div class="col col-33">
+			<h5>{{ 'PICK_UP_LOCATION' | translate }}</h5>
+			<p>{{ invoiceDetail.pick_up_site }} </p>
+		</div>
+		<div class="col col-33">
+			<h5>{{ 'PAYMENT_METHOD' | translate }}</h5>
+			<p>{{ invoiceDetail.pay_method }} </p>
+		</div>
+  	</div>
+  	<div class="row text-center" ng-if="('tab.refund' | isState)">
+		<div class="col col-33">
+			<h5>{{ 'CLIENT' | translate }}</h5>
+			<p>	{{ invoiceDetail.billing_contact }},
+				{{ invoiceDetail.billing_mobile }},
+				{{ invoiceDetail.billing_address }}
+
+			</p>
+		</div>
+		<div class="col col-33" ng-if="invoiceDetail.delivery_type == 'shipping'">
+			<h5>{{ 'DELIVERY_ADDRESS' | translate }}</h5>
+			<p>	{{ invoiceDetail.shipping_address }} </p>
+		</div>
+  	</div>
+  	<div class="pad">
+  		<div class="row text-center">
+			  <div class="col col-5">
+			  </div>
+			  <div class="col col-25">
+			  	<div class="big">{{ 'ITEM' | translate }}</div>
+			  </div>
+			  <div class="col col-20">
+			  	<div class="big">{{ 'PRODUCT_CODE' | translate }}</div>
+			  </div>
+			  <div class="col col-20">
+			  	<div class="big">{{ 'UNIT_PRICE' | translate }}</div>
+			  </div>
+			  <div class="col col-20">
+			  	<div class="big">{{ 'QTY' | translate }}</div>
+			  </div>
+			  <div class="col col-10">
+			  	<div class="big">{{ 'SUBTOTAL' | translate }}</div>
+			  </div>
+  		</div>
+  	</div>
+  		<ion-item class="pad white-bg" ng-repeat="product in productDetail" ng-if="(product.remained_qty_for_pick_up != 0 && ('tab.pick-up' | isState)) || (product.qty != 0 && ('tab.refund' | isState)) || partial_pick">
+  	  	<div class="row">
+				  <div class="col col-5 text-center">
+				  	<input class="invoice-checkbox" type="checkbox" ng-model="product.checkboxValue" ng-click="change_button(product.checkboxValue, product.actual_unit_price, product.actual_pickup_qty)" />
+				  </div>
+				  <div class="col col-25">
+				  	<p>{{ product.name }}</p>
+				  </div>
+				  <div class="col col-20 text-center">
+				  	<p>{{ product.sku_no }}</p>
+				  </div>
+				  <div class="col col-20 text-center">
+				  	<p>$ {{ product.actual_unit_price | number:2 }}</p>
+				  </div>
+				  <div class="col col-20 text-center">
+				  	<p ng-if="('tab.pick-up' | isState) || partial_pick">
+				  		<i class="ion ion-minus-circled grey bigger pad-right" ng-click="minus(product, product.actual_pickup_qty, 0)"></i>
+				  		<input type="number"
+				  			   class="col-20 inline-block text-center"
+				  			   ng-change="checkQty(product, product.actual_pickup_qty, product.remained_qty_for_pick_up)"
+				  			   ng-model="product.actual_pickup_qty" required />
+				  		<i class="ion ion-plus-circled grey bigger pad-left" ng-click="add(product, product.actual_pickup_qty, product.remained_qty_for_pick_up)"></i>
+				  	</p>
+				  	<p ng-if="('tab.refund' | isState)">
+				  		<i class="ion ion-minus-circled grey bigger pad-right" ng-click="minus(product, product.actual_pickup_qty, 0)"></i>
+				  		<input type="number"
+				  			   class="col-20 inline-block text-center"
+				  			   ng-change="checkQty(product, product.actual_pickup_qty, product.qty)"
+				  			   ng-model="product.actual_pickup_qty" required />
+				  		<i class="ion ion-plus-circled grey bigger pad-left" ng-click="add(product, product.actual_pickup_qty, product.qty)"></i>
+				  	</p>
+				  </div>
+				  <div class="col col-10 text-center">
+				  	<p>${{ product.actual_unit_price * product.actual_pickup_qty | number:2 }}</p>
+				  </div>
+  			</div>
+		</ion-item>
+		<div class="pad"  ng-if="('tab.pick-up' | isState) || partial_pick">
+			<div class="row" >
+				<div class="text-right col col-90">{{ 'SUBTOTAL' | translate }}
+				</div>
+				<div class="text-right col col-10">$ {{ invoiceDetail.item_total | number:2 }}
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-right col col-90">{{ 'DISCOUNT' | translate }}
+				</div>
+				<div class="text-right col col-10">($ {{ invoiceDetail.discount_total | number:2  }})
+				</div>
+			</div>
+
+			<div class="row" ng-show="invoiceDetail.delivery_type == 'shipping'">
+				<div class="text-right col col-90">{{ 'SHIPPING_COST' | translate }}
+				</div>
+				<div class="text-right col col-10">$ {{ invoiceDetail.delivery_total | number:2  }}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="text-right col col-90">{{ 'SERVICE_TOTAL' | translate }}
+				</div>
+				<div class="text-right col col-10">$ {{ invoiceDetail.service_total | number:2  }}
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-right col col-90">{{ 'TOTAL' | translate }}
+				</div>
+				<div class="text-right col col-10">$ {{ invoiceDetail.grand_total | number:2  }}
+				</div>
+			</div>
+
+			<div class="row" ng-show="invoiceDetail.deposit != 0">
+				<div class="text-right col col-90">{{ 'DEPOSIT' | translate }}
+				</div>
+				<div class="text-right col col-10">($ {{ invoiceDetail.deposit | number:2  }})
+				</div>
+			</div>
+
+			<div class="row" ng-show="invoiceDetail.deposit != 0">
+				<div class="text-right col col-90">{{ 'BALANCE_DUE' | translate }}
+				</div>
+				<div class="text-right col col-10">$ {{ invoiceDetail.grand_total - invoiceDetail.deposit | number:2  }}
+				</div>
+			</div>
+
+		</div>
+		<div ng-if="('tab.refund' | isState)">
+
+			<div class="row">
+				<div class="text-right col col-90">{{ 'REMAINED_CREDIT' | translate }}
+				</div>
+				<div class="text-right col col-10">$ {{ invoiceDetail.refund | number:2 }}
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-right col col-90">{{ 'CREDIT_TOTAL' | translate }}
+				</div>
+				<div class="text-right col col-10">($ {{ invoiceDetail.remain_temp | number:2  }})
+				</div>
+			</div>
+
+		</div>
+
+
+  <!--</ion-content>-->
+
+</ion-scroll>
+  	<div class="modal-footer">
+  	  <button type="submit" class="button button-calm pull-right uppercase" ng-disabled="!can_confirm">{{ 'CONFIRM' | translate }}</button>
+  	</div>
+</ion-modal-view>
+
+  </form>
+

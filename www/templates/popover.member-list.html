@@ -1,0 +1,79 @@
+<ion-popover-view>
+    <!--<div class="data-search has-header">
+    <form ng-submit="searchButtonBar.searchFor(searchButtonBar.searchKeyword)">
+      <i class="pull-left icon placeholder-icon ion-android-search"></i>
+      <i class="pull-right icon placeholder-icon ion-close-circled clear-text" ng-click="searchButtonBar.searchKeyword = ''"></i>
+      <input  type="search" placeholder="{{ searchButtonBar.searchHints}}" ng-model="searchButtonBar.searchKeyword" />
+    </form>
+  </div>-->
+    <div ng-show="!$root.isMemberDetail">
+        <div class="search-button-bar">
+            <div class="search-form" style="border-radius:0px;">
+                <form ng-submit="customerSearchBar.searchFor(customerSearchBar.searchKeyword)">
+                    <i class="pull-left icon placeholder-icon ion-android-search"></i>
+                    <i class="pull-right icon placeholder-icon ion-close-circled clear-text" ng-click="customerSearchBar.searchKeyword=''"></i>
+                    <input type="search" placeholder="{{ customerSearchBar.searchHints }}" ng-model="customerSearchBar.searchKeyword" />
+                    <button type="submit">{{ 'SEARCH' | translate }}</button>
+                </form>
+            </div>
+            <button class="button button-icon ion-qr-scanner" style="width:10%;" on-touch="customerSearchBar.scanQR()"></button>
+        </div>
+        <p class="lowlight text-center pad-top-sm" style="padding-top: 5px !important;" ng-if="customerList&&customerList.length==0">{{ 'NO_RECORD_FOUND' | translate }}
+        </p>
+        <ion-content class="has-modal-header">
+            <ion-list>
+                <ion-item ng-repeat="customer in customerList" ng-click="popOverOperation.processMemberDetail(customer.member_id)">
+                    <h3>
+                      <span class="pull-left">
+                        <i class="ion-record balanced"></i> {{ customer.first_name }} {{ customer.last_name }}
+                      </span>
+                      <!-- <span class="pull-right lowlight text-normal" ng-click="goToCart(customer.user_id);$event.stopPropagation();">
+                       {{ 'GO_TO_CART' | translate }}
+                      </span> -->
+                    </h3>
+                    <p class="text-balanced">{{ customer.VIP_LEVEL }}</p>
+                    <p class="lowlight">{{ 'CUSTOMER_NO' | translate }}: {{customer.prefix}}-{{customer.member_id| numberFixedLen:10 }}</p>
+                    <p class="lowlight">{{ 'PHONE' | translate }}: <span ng-if="customer.mobile">{{customer.country_code}} </span>{{customer.mobile}}</p>
+                </ion-item>
+            </ion-list>
+            <ion-infinite-scroll ng-if="customerList.length != customerCount" on-infinite="loadMenuCustomerList('more',searchButtonBar.searchKeyword)" distance="1%"></ion-infinite-scroll>
+        </ion-content>
+    </div>
+    <div ng-show="$root.isMemberDetail">
+        <div class="search-button-bar">
+            <button class="button button-icon" style="width:10%;" ng-click="popOverOperation.memberBack()"><i class="ion-chevron-left"></i></button>
+            <div class="search-form" style="border-radius:0px;">
+                <form ng-submit="customerSearchBar.searchFor(customerSearchBar.searchKeyword)">
+                    <i class="pull-left icon placeholder-icon ion-android-search"></i>
+                    <i class="pull-right icon placeholder-icon ion-close-circled clear-text" ng-click="customerSearchBar.searchKeyword=''"></i>
+                    <input type="search" placeholder="{{ customerSearchBar.searchHints }}" ng-model="customerSearchBar.searchKeyword" />
+                    <button type="submit">{{ 'SEARCH' | translate }}</button>
+                </form>
+            </div>
+            <button class="button button-icon" style="width:10%;" on-touch="popOverOperation.popoverBack()"><i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+        </div>
+        <ion-content class="has-modal-header">
+            <div class="member-card">
+                <div class="member-card-left">
+                    <h1>{{customerDetail.default_shipping_address}}</h1>
+                    <h3>{{customerDetail.first_name}} {{customerDetail.last_name}}</h3>
+                    <p class="balanced">
+                        <i class="ion-record"></i> {{ customerDetail.VIP_LEVEL }}
+                    </p>
+                    <div class="bottom-left">
+                        <p>{{ 'CARD_NO' | translate }}: {{customerDetail.prefix}}-{{customerDetail.member_id| numberFixedLen:10 }}</p>
+                        <p>{{ 'ISSUE_DATE' | translate }}: {{customerDetail.birthday}}</p>
+                    </div>
+                </div>
+                <div class="member-card-right">
+                    <div class="user-photo"><i class="ion-android-person"></i></div>
+                    <div class="bottom-right">
+                        <img class="img-responsive" src="img/posify_r.png" />
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </ion-content>
+    </div>
+</ion-popover-view>

@@ -1,0 +1,25 @@
+<ion-modal-view class="my-modal u-picker u-picker-two-col">
+	<ion-header-bar>
+		<h1 class="title">
+			<button type="button" class="pull-right button button-clear" ng-click="pickerConfig.cancelClick()">{{ 'CANCEL' | translate }}</button>
+			{{ pickerConfig.title | translate }}
+		</h1>
+	</ion-header-bar>
+	<ion-content>
+		<ion-list>
+		  <ion-item ng-repeat="option in pickerConfig.options" ng-if="$even">
+		    <div class="row">
+		      <div class="col col-50">
+            <ion-checkbox ng-model="pickerConfig.options[$index].checked" ng-checked="pickerConfig.options[$index].checked" ng-click="pickerConfig.checkMultiple(pickerConfig.options[$index])">
+              {{ pickerConfig.options[$index].name }}
+            </ion-checkbox>
+          </div>
+		      <div class="col col-50">
+            <ion-checkbox ng-model="pickerConfig.options[$index + 1].checked" ng-checked="pickerConfig.options[$index + 1].checked" ng-click="pickerConfig.checkMultiple(pickerConfig.options[$index + 1])">
+              {{ pickerConfig.options[$index + 1].name }}
+            </ion-checkbox>
+          </div>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-modal-view>
